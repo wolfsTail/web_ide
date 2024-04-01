@@ -1,0 +1,43 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Добро пожаловать в Онлайн Редактор Кода!</h2>
+    <p>Этот онлайн-редактор кода предоставляет удобную (ага) и доступную среду для написания, 
+    и отладки самый базовых вариантов Вашего кода прямо из браузера.</p>
+
+    <h3>Возможности:</h3>
+    <ul class="features">
+        <li>Поддержка нескольких языков программирования: Python, Go, C и др.</li>
+        <li>Подсветка синтаксиса для улучшения читаемости кода.</li>
+        <li>Авторская реализация всего функционала.</li>
+    </ul>
+
+    <h3>Недостатки:</h3>
+    <ul class="drawbacks">
+        <li>Весьма ограниченные возможности по сравнению с полноценными IDE.</li>
+        <li>Наличие интернет-соединение.</li>
+        <li>Отсутвие поддержики многих возможности и инструменов разработки.</li>
+        <li>Полное отсутсвие вкуса автора.</li>
+    </ul>
+
+    <div id="editorContainer" style="display:none;">
+        <!-- EDITOR MUST BE HERE!!! -->
+    </div>
+    <br>
+    <button class="button-minimal" hx-get="/editor" hx-target="#editorContainer" hx-swap="innerHTML" onclick="showEditor();">
+        Попробывать
+    </button>
+    <button class="button-minimal" onclick="hideEditor();">
+        Скрыть редактор
+    </button> 
+    <script>
+        function showEditor() {
+            document.getElementById('editorContainer').style.display = 'block';
+        }
+        function hideEditor() {
+            document.getElementById('editorContainer').style.display = 'none';
+        }
+</script>      
+</div>
+{% endblock %}

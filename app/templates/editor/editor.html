@@ -1,0 +1,56 @@
+<form action="/editor/execute_code_partial/" method="post" 
+hx-post="/editor/execute_code_partial/" hx-target="#output" hx-swap="outerHTML">
+    {% csrf_token %}
+    <div>
+        <label for="codearea">Рабочая область</label>
+        <textarea id="codearea" name="codearea" rows="12" >{{ code }}</textarea> 
+    </div>
+    <hr>
+    <div>
+        <select id="language" name="language">
+            <option value="python">Python</option>
+            <option value="go">Go</option>
+            <option value="c">C</option>
+        </select>            
+    </div> 
+    <br>
+    <div id="editor_output">
+        <label for="output">Вывод</label>
+        {% include "editor/partial/editor_output.html" %}
+    </div>
+
+    <button type="submit">Запустить код</button>
+    <button type="button" onclick="clearOutput();" class="cancel-button">Отмена</button>
+</form>
+
+<script>
+    var codeEditor = CodeMirror.fromTextArea(document.getElementById("codearea"), {
+        mode: "python", 
+        lineNumbers: true,
+        indentUnit: 4,
+        extraKeys: { Tab: "indentMore", "Shift-Tab": "indentLess" },
+    });  
+    
+    function clearOutput() {
+        document.getElementById("output").value = ""; 
+    };
+
+    function changeLanguage() {
+        var language = document.getElementById("language").value;
+        var mode = "text/plain"; 
+        
+        if (language === "python") {
+            mode = "text/x-python";
+        } else if (language === "go") {
+            mode = "text/x-go";
+        } else if (language === "c") {
+            mode = "text/x-csrc";
+        }
+        
+        codeEditor.setOption("mode", mode);
+    };    
+
+    document.getElementById("language").addEventListener("change", changeLanguage);    
+
+    changeLanguage();
+</script>

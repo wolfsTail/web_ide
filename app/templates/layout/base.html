@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Онлайн редактор</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/go/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/clike/clike.min.js"></script>
+    <script src="https://unpkg.com/htmx.org"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f7;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+ 
+        form {
+            width: 100%;
+            max-width: 800px;
+            margin-left: 30; 
+            margin-right: auto; 
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        #editorContainer {
+            margin: auto;
+            width: 80%; /* Или любая другая ширина */
+            /* Другие стили для красивого отображения */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: bold;
+            color: black;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+ 
+        #codearea,
+        #output {
+            height: 300px;
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid green;
+            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 24px;
+            resize: vertical;
+        }
+ 
+        #output {
+            height: 150px;
+            padding: 5px;
+        }
+ 
+        button {
+            color: green;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid green;
+            cursor: pointer;
+            font-size: 15px;
+        }
+ 
+        button:hover {
+            background-color: #388e3c;
+            color: white;
+        }
+        .cancel-button {
+            background-color: #ff4d4d; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            cursor: pointer; 
+            font-size: 15px;
+        }    
+        .cancel-button:hover {
+            background-color: #cc0000;
+            color: white;
+        }
+    
+        .cancel-button:active {
+            background-color: #990000; 
+        }
+
+        .button-minimal {
+            background-color: #f8f8f8; 
+            border: 1px solid #ddd; 
+            color: #555; 
+            padding: 5px 10px; 
+            border-radius: 1px; 
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s; 
+        }
+    
+        .button-minimal:hover {
+            background-color: #e7e7e7; 
+            color: #333; 
+        }
+    
+        .button-minimal:active {
+            background-color: #d7d7d7; 
+            color: #222; 
+        }
+
+        footer {
+            margin-top: 2%;
+            padding: 1%;
+            border-top: 1px solid #aaa;
+            text-align: left;
+        }
+
+
+    </style>
+</head>
+ 
+<body> 
+    {% block content %}
+    {% endblock %}
+</body>
+<footer class="container">
+    <span class="pull-right"> dromanoff © 2024 </span>
+</footer> 
+</html>
